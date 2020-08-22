@@ -7,7 +7,25 @@ const ImageList = (props) => {
     return <ImageCard key={image.id} image={image} />;
    });
 
-  return <div className="image-list">{images}</div>;
+   const handleScroll = (e) => {
+     const element = e.target;
+     const { scrollHeight, scrollTop, clientHeight } = element;
+        if (scrollHeight - scrollTop === clientHeight) {
+            console.log('reach end');
+            const newPage = props.page + 1;
+            props.setPage(newPage);
+          props.onSearchSubmit(props.term, newPage);
+        }
+     };
+    
+
+  return (
+       <div
+         onScroll={handleScroll}
+         style={{ height: '1000px', overflow: 'scroll' }}
+         className="image-list">{images}
+       </div>
+  );
  };
 
 export default ImageList;
