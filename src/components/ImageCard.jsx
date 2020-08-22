@@ -1,6 +1,8 @@
 import React from 'react';
+import ImageModal from './ImageModal';
 
 const ImageCard = (props) => {
+  const [modalShow, setModalShow] = React.useState(false);
   const [spans, setSpans] = React.useState(0);
   const imageRef = React.useRef(null);
 
@@ -16,9 +18,16 @@ const ImageCard = (props) => {
   const { description, urls } = props.image;
 
   return (
-    <div style={{ gridRowEnd: `span ${spans}` }}>
-      <img ref={imageRef} alt={description} src={urls.regular} />
-    </div>
+    <>
+      <div style={{ gridRowEnd: `span ${spans}` }}>
+        <img onClick={() => setModalShow(true)} ref={imageRef} alt={description} src={urls.regular} />
+      </div>
+      <ImageModal
+        image={props.image}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
+    </>
   );
 };
 
