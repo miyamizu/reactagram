@@ -15,9 +15,9 @@ import './Search.css';
     <input
       type="text"
       className='Search'
-      value=''
+      value={term}
       placeholder="検索"
-      onChange={(e) => console.log(e)}
+      onChange={(e) => setTerm(e.target.value)}
      />
   </form>
  );
