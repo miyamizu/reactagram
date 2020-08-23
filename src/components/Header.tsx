@@ -1,7 +1,11 @@
 import * as React from 'react';
 import './Header.css';
 
-const Header = ({children}) => {
+type Props = {
+  children: React.ReactElement;
+}
+
+const Header: React.FC<Props> = ({children}) => {
  return (
    <>
      <div className="Header">
