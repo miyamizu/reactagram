@@ -18,9 +18,8 @@ const App:React.FC = () => {
 
   const onSearchSubmit = async (term: string, page: number) => {
     const response = await unsplash.get('/search/photos', {
-            params: { query: term, per_page: 21, page: page }
+            params: { query: term, per_page: 30, page: page }
       });
-      setImages(response.data.results);
       setImages(page === 1 ? response.data.results : images.concat(response.data.results));
     };
 
